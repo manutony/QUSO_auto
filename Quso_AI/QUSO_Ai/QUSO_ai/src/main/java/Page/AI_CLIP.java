@@ -3,6 +3,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 
 public class AI_CLIP
@@ -22,9 +25,15 @@ public class AI_CLIP
         System.out.println("Navigate to AI Clip");
         driver.findElement(Upload_Video).click();
         System.out.println("Clicked on Upload a Video");
-        WebElement fileInput = driver.findElement(Upload_Video);
+
+
+        Robot robot = new Robot();
         String filePath = "C:\\Users\\mariy\\Downloads\\videoplayback.mp4";
-        fileInput.sendKeys(filePath);
+        StringSelection selection = new StringSelection(filePath);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
         System.out.println("Uploaded");
 
     }
